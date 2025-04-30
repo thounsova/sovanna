@@ -70,37 +70,36 @@ export default function Story() {
   return (
     <main>
       <Hero onSearchQueryChange={setSearchQuery} />
-      <div className="w-full flex flex-col-12 sm:flex-row items-center justify-center p-6">
-        <div className="space-y-6 sm:space-y-0 sm:space-x-6 flex flex-col sm:flex-row items-center justify-center">
-          {/* Story Type Dropdown */}
-          <select
-            value={selectedStoryType}
-            onChange={(e) => setSelectedStoryType(e.target.value)}
-            className="w-full sm:w-64 bg-pink-100 text-pink-700 rounded-full border-2 border-pink-400 px-6 py-3 shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-300 transition-all duration-200 hover:bg-pink-200"
-          >
-            <option value="">Select Story Type</option>
-            {storyTypes.map((type) => (
-              <option key={type.id} value={type.id.toString()}>
-                {type.name || "Unknown Type"}
-              </option>
-            ))}
-          </select>
+      <div className="w-full flex flex-col-6 sm:flex-row flex-wrap items-center justify-center gap-4 p-6">
+  {/* Story Type Dropdown */}
+  <select
+    value={selectedStoryType}
+    onChange={(e) => setSelectedStoryType(e.target.value)}
+    className="w-full sm:w-64 bg-pink-100 text-pink-700 rounded-full border border-pink-300 px-6 py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-200 hover:bg-pink-200"
+  >
+    <option value="">🌈 Select Story Type</option>
+    {storyTypes.map((type) => (
+      <option key={type.id} value={type.id.toString()}>
+        {type.name || "Unknown Type"}
+      </option>
+    ))}
+  </select>
 
-          {/* Age Range Dropdown */}
-          <select
-            value={selectedAgeRange}
-            onChange={(e) => setSelectedAgeRange(e.target.value)}
-            className="w-full sm:w-64 bg-blue-100 text-blue-700 rounded-full border-2 border-blue-400 px-6 py-3 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-200 hover:bg-blue-200"
-          >
-            <option value="">Select Age Range</option>
-            {ageRanges.map((range) => (
-              <option key={range.id} value={range.id.toString()}>
-                {range.label} years
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+  {/* Age Range Dropdown */}
+  <select
+    value={selectedAgeRange}
+    onChange={(e) => setSelectedAgeRange(e.target.value)}
+    className="w-full sm:w-64 bg-blue-100 text-blue-700 rounded-full border border-blue-300 px-6 py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200 hover:bg-blue-200"
+  >
+    <option value="">🧒 Select Age Range</option>
+    {ageRanges.map((range) => (
+      <option key={range.id} value={range.id.toString()}>
+        {range.label} years
+      </option>
+    ))}
+  </select>
+</div>
+
 
       <div className="mt-6">
         {stories.length > 0 ? (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -21,6 +21,17 @@ const CardComponent: React.FC<CardProps> = ({
   link,
   onFavoriteClick,
 }) => {
+  // Local state to track whether the card is favorited or not
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsFavorited(!isFavorited); // Toggle the favorite state
+    if (onFavoriteClick) {
+      onFavoriteClick(id); // Pass the ID to the parent if needed
+    }
+  };
+
   return (
     <Link
       to={link || "#"}
@@ -36,27 +47,25 @@ const CardComponent: React.FC<CardProps> = ({
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-semibold text-pink-500">{title}</h2>
+          
+          {/* Smaller, cleaner favorite button */}
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              onFavoriteClick?.(id);
-            }}
-            className="flex items-center justify-center p-1 bg-gradient-to-r from-white to-pink-600 rounded-full shadow-lg hover:scale-105 transform transition-all hover:from-pink-500 hover:to-pink-500"
+            onClick={handleFavoriteClick}
+            className={`p-2 ${isFavorited ? "text-red-500" : "text-gray-500"} bg-transparent rounded-full hover:text-pink-600 transition-all`}
           >
-            <div className="px-3 py-2 rounded-full flex items-center justify-center transition-all shadow-md bg-pink-500 hover:bg-pink-600">
-              <svg
-                className="w-4 h-4 text-white drop-shadow-sm hover:text-red-600"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+            {/* Heart icon */}
+            <svg
+              className="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
                   2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
                   C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
                   c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                />
-              </svg>
-            </div>
+              />
+            </svg>
           </button>
         </div>
         <p className="text-sm text-gray-600">{description}</p>
