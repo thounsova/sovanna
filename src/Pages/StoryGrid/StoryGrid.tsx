@@ -89,7 +89,7 @@ export default function Story() {
   <select
     value={selectedAgeRange}
     onChange={(e) => setSelectedAgeRange(e.target.value)}
-    className="w-full sm:w-64 bg-blue-100 text-blue-700 rounded-full border border-blue-300 px-6 py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200 hover:bg-blue-200"
+    className="w-full sm:w-64 bg-blue-200 text-blue-700 rounded-full border border-blue-300 px-6 py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200 hover:bg-blue-200"
   >
     <option value="">🧒 Select Age Range</option>
     {ageRanges.map((range) => (
